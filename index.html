@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kottuma Fresh - Coming Soon</title>
+    <meta name="description" content="Fresh seafood delivered straight to your door. Kottuma Fresh is coming soon. Stay tuned!">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #030712;
+            --primary: #3b82f6;
+            --primary-glow: rgba(59, 130, 246, 0.15);
+            --accent: #06b6d4;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --card-bg: rgba(17, 24, 39, 0.7);
+            --card-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Abstract Ocean Glow Backgrounds */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(80px);
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(80px);
+            pointer-events: none;
+        }
+
+        header {
+            width: 100%;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .header-logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: 0.1rem;
+            color: var(--text-main);
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header-logo span {
+            color: var(--accent);
+        }
+
+        main {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            padding: 1rem 2rem;
+            z-index: 10;
+        }
+
+        .container {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 3.5rem 2.5rem;
+            width: 100%;
+            max-width: 640px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .logo-container {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 2rem;
+            background: #fff;
+            border-radius: 50%;
+            padding: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+            transition: transform 0.5s ease;
+            position: relative;
+        }
+
+        .logo-container::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.75rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 30%, #a5f3fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            max-width: 480px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.6;
+        }
+
+        /* Coming Soon Badge */
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            color: var(--accent);
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+        /* WhatsApp Button styling */
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 14px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.25);
+            transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .whatsapp-btn:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(37, 211, 102, 0.35);
+        }
+
+        .whatsapp-btn:active {
+            transform: translateY(0);
+        }
+        
+        .whatsapp-btn i {
+            font-size: 1.5rem;
+        }
+
+        /* Features/Highlights */
+        .features {
+            display: grid;
+            grid-template-cols: repeat(3, 1fr);
+            gap: 1.5rem;
+            border-top: 1px solid var(--card-border);
+            padding-top: 2rem;
+        }
+
+        @media (max-width: 480px) {
+            .features {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        footer {
+            width: 100%;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            z-index: 10;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-link {
+            color: var(--text-muted);
+            font-size: 1.25rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .copyright {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* Wave Decoration at the bottom */
+        .wave-decoration {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+            z-index: 1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .wave-decoration svg {
+            position: relative;
+            display: block;
+            width: calc(150% + 1.3px);
+            height: 80px;
+        }
+
+        .wave-decoration .shape-fill {
+            fill: #06b6d4;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-logo">
+            Kottuma<span>Fresh</span>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main>
+        <div class="container">
+            <div class="badge">Coming Soon</div>
+            
+            <!-- Logo Section -->
+            <div class="logo-container">
+                <img src="logo.jpeg" alt="Kottuma Fresh Logo" class="logo-img">
+            </div>
+
+            <h1>Catch of the Day,<br>On Its Way!</h1>
+            <p class="subtitle">We're getting ready to deliver the freshest seafood directly from the docks to your doorstep. Stay tuned!</p>
+
+            <!-- WhatsApp Action Button -->
+            <a href="https://chat.whatsapp.com/FsaLH73HFI24TjRUHjkydZ" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Order & Get Updates on WhatsApp</span>
+            </a>
+
+            <!-- Value Props -->
+            <div class="features">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-anchor"></i></div>
+                    <div class="feature-title">Fresh Catch</div>
+                    <div class="feature-desc">Direct from local fishing boats</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
+                    <div class="feature-title">Fast Delivery</div>
+                    <div class="feature-desc">Temperature-controlled transit</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-circle-check"></i></div>
+                    <div class="feature-title">Premium Quality</div>
+                    <div class="feature-desc">Sustainably sourced & clean</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#" class="social-link" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-link" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+        <p class="copyright">&copy; 2026 Kottuma Fresh. All rights reserved.</p>
+    </footer>
+
+    <!-- Bottom Wave Decoration -->
+    <div class="wave-decoration">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120 " preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0c26.9,8.75,55.05,16.34,84,22.38C138.3,33.16,193.3,47.4,251,56.44Z" class="shape-fill"></path>
+        </svg>
+    </div>
+
+
+</body>
+</html>
